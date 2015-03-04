@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 
 namespace IW.Model
 {
@@ -13,18 +10,21 @@ namespace IW.Model
         public string InstrumentId { get; set; }
         public string Description { get; set; }
 
+        public InstrumentMarketData(string id)
+        {
+            InstrumentId = string.Format("Id - {0}", id);
+            Description = string.Format("Desc - {0}", id);
+        }
+
+        public InstrumentMarketData()
+        { }
+
         public static InstrumentMarketData New
         {
             get
             {
-                var id = _random.Next(1000);
-                return new InstrumentMarketData
-            {
-
-                InstrumentId = string.Format("Id - {0}", id),
-                Description = string.Format("Desc - {0}", id)
-
-            };
+                var id = _random.Next(1000).ToString(CultureInfo.InvariantCulture);
+                return new InstrumentMarketData(id);
             }
         }
     }
